@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <title>{% block page_title %}{% endblock page_title %}</title>
+      {% include "snippets/head.html" %}
+   </head>
+   <body>
+      {% comment %} {% include "snippets/header.html" %} {% endcomment %}
+      <div class="header_section" style="background-image:url('{% static "" %}images/banner-bg.png')">
+        {% include "snippets/header.html" %}
+         {% block hero_section %}{% endblock hero_section %}
+     </div>
+      {% block page_content %}{% endblock page_content %}
+      {% include "snippets/footer.html" %}
+      {% include "snippets/script.html" %}
+   </body>
+</html>

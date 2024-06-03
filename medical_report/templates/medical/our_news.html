@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static bootstrap5 %}
+{% block page_title %}
+    Our News
+{% endblock page_title %}
+{% block page_content %}
+    {% for new in all_news %}
+        <div class="client_section layout_padding">
+            <div id="my_slider_{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for image in new.ourprojectnewsimages_set.all %}
+                        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                            <div class="container">
+                                <h1 class="client_taital">{{new.title}}</h1>
+                                <p class="client_text">{{new.description}}</p>
+                                <div class="client_section_2">
+                                    <div class="col-md-12" style="height:300px;">
+                                        <div class="p-2"><img src="{{image.image.url}}" class="client_img"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- Update carousel controls to match unique ID -->
+                <a class="carousel-control-prev" href="#my_slider_{{ forloop.counter }}" role="button" data-slide="prev">
+                    <i class="fa fa-long-arrow-left" style="font-size:24px; padding-top: 4px;"></i>
+                </a>
+                <a class="carousel-control-next" href="#my_slider_{{ forloop.counter }}" role="button" data-slide="next">
+                    <i class="fa fa-long-arrow-right" style="font-size:24px; padding-top: 4px;"></i>
+                </a>
+            </div>
+        
+        </div>
+    {% endfor %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Manually initialize all carousels
+        var carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(function(carousel) {
+            $(carousel).carousel();
+        });
+    });
+</script>
+
+{% endblock page_content %}

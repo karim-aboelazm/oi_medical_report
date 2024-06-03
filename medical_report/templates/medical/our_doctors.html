@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static bootstrap5 %}
+{% block page_title %}
+    Our Doctors
+{% endblock page_title %}
+{% block page_content %}
+<div class="news_section layout_padding">
+    <div class="container">
+        <h1 class="health_taital">Why choose 24hr home care</h1>
+        <p class="health_text">Based on our perfect doctors</p>
+        <div class="news_section_2 layout_padding">
+            <div class="row">
+                {% for doc in all_doctors %}
+                <div class="col-lg-4 col-sm-6 my-5" >
+                    <div class="box_main" style="height:400px">
+                        <div class="icon_1 mb-3">
+                            {% if doc.doctor_image %}
+                                <img src="{{doc.doctor_image.url}}"  style="width:160px;height:160px;border-radius:50%;" class="card-img-top" alt="...">
+                            {% else %}
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png"  style="width:160px;height:160px;border-radius:50%;" class="card-img-top" alt="...">
+                            {% endif %}
+                        </div>
+                        <h6 class="daily_text text-center">{{doc.doctor_name}}</h6>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a href="https://wa.me/+2{{doc.doctor_phone}}?" class="mx-3" style="text-decoration:none;"><i class="fa fa-whatsapp text-light" style="font-size:20px;color:#333;"></i></a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="{{doc.doctor_fb_url}}" class="mx-3" style="text-decoration:none;"><i class="fa fa-facebook text-light" style="font-size:20px;color:#333;"></i></a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="mailto:{{doc.doctor_email}}" class="mx-3" style="text-decoration:none;"><i class="fa fa-envelope text-light" style="font-size:20px;color:#333;"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% comment %} <div class="col-lg-4 col-sm-6">
+                    <div class="box_main">
+                        <div class="icon_1"><img src="{% static '' %}images/icon-3.png"></div>
+                        <h4 class="daily_text_1">Available 24/7</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="box_main">
+                        <div class="icon_1"><img src="{% static '' %}images/icon-4.png"></div>
+                        <h4 class="daily_text_1">Balanced care</h4>
+                    </div>
+                </div> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
